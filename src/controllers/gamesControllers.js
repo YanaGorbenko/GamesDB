@@ -6,7 +6,15 @@ import {
 } from '../services/gamesServices.js';
 
 export const getGames = async (req, res) => {
-  const games = await getGamesService();
+  const { page, limit, sortBy, sortOrder, search, genres } = req.query;
+  const games = await getGamesService(
+    page,
+    limit,
+    sortBy,
+    sortOrder,
+    search,
+    genres,
+  );
   res.json(games);
 };
 
