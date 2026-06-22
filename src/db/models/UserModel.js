@@ -18,6 +18,11 @@ const userSchema = new Schema(
       type: String,
       default: 'https://cdn-icons-png.flaticon.com/512/4837/4837857.png',
     },
+    selectedGames: {
+      type: [Schema.Types.ObjectId],
+      ref: 'Game',
+      default: [],
+    },
   },
   { timestamps: true, versionKey: false },
 );

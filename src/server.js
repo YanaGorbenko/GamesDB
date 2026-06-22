@@ -7,6 +7,7 @@ import gamesRouter from './routers/GamesRouter.js';
 import authRouter from './routers/authRouter.js';
 import cookieParser from 'cookie-parser';
 import { errors } from 'celebrate';
+import selectedRouter from './routers/selectedGamesRouter.js';
 
 const PORT = process.env.PORT;
 
@@ -16,6 +17,7 @@ app.use(cookieParser());
 
 app.use('/auth', authRouter);
 app.use('/games', gamesRouter);
+app.use('/selected', selectedRouter);
 
 app.use(notFoundHandler);
 app.use(errors());

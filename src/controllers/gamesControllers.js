@@ -7,6 +7,9 @@ import {
 
 export const getGames = async (req, res) => {
   const { page, limit, sortBy, sortOrder, search, genres } = req.query;
+  if (genres && typeof genres === 'string') {
+    genres = genres.split(',').map(g => g.trim());
+  }
   const games = await getGamesService(
     page,
     limit,
