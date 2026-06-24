@@ -1,7 +1,7 @@
 import express from 'express';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
-import { connectDb } from './db/connectDb.js';
+import { connectDb } from './db/connectDB.js';
 import 'dotenv/config';
 import gamesRouter from './routers/GamesRouter.js';
 import authRouter from './routers/authRouter.js';
