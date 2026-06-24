@@ -62,3 +62,24 @@ export const removeGameFromSelectedService = async (userId, gameId) => {
     { new: true },
   ).populate('selectedGames');
 };
+
+export const updateUserAvatarService = async (userId, avatarUrl) => {
+  const user = await User.findByIdAndUpdate(
+    userId,
+    { photo: avatarUrl },
+    {
+      new: true,
+      select: 'name email photo',
+    },
+  );
+
+  if (!user) {
+    throw createHttpError(404, 'User not found');
+  }
+
+  return {
+    photo: user.photo,
+    name: user.name,
+    email: user.email,
+  };
+};

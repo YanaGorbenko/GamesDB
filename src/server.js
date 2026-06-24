@@ -8,6 +8,8 @@ import authRouter from './routers/authRouter.js';
 import cookieParser from 'cookie-parser';
 import { errors } from 'celebrate';
 import selectedRouter from './routers/selectedGamesRouter.js';
+import ideasRouter from './routers/ideasRouter.js';
+import userRouter from './routers/usersRouter.js';
 
 const PORT = process.env.PORT;
 
@@ -16,8 +18,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/auth', authRouter);
+app.use('/users', userRouter);
 app.use('/games', gamesRouter);
 app.use('/selected', selectedRouter);
+app.use('/ideas', ideasRouter);
 
 app.use(notFoundHandler);
 app.use(errors());
