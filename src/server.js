@@ -10,10 +10,12 @@ import { errors } from 'celebrate';
 import selectedRouter from './routers/selectedGamesRouter.js';
 import ideasRouter from './routers/ideasRouter.js';
 import userRouter from './routers/usersRouter.js';
+import cors from 'cors';
 
 const PORT = process.env.PORT;
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
