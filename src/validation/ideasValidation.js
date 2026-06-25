@@ -8,7 +8,7 @@ const validateId = (id, utils) =>
 export const getIdeasSchema = {
   [Segments.QUERY]: Joi.object({
     page: Joi.number().integer().min(1).default(1),
-    limit: Joi.number().integer().min(10).max(50).default(10),
+    limit: Joi.number().integer().min(10).default(10),
   }),
 };
 
