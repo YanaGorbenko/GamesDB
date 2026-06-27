@@ -11,7 +11,7 @@ import bcrypt from 'bcrypt';
 import { clearCookies, setCookies } from '../utils/index.js';
 
 export const signUp = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, photo } = req.body;
 
   const user = await findUserByEmail(email);
 
@@ -21,7 +21,12 @@ export const signUp = async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const newUser = await createUser({ name, email, password: hashedPassword });
+  const newUser = await createUser({
+    name,
+    email,
+    password: hashedPassword,
+    photo,
+  });
 
   const session = await createSession(newUser._id);
 
