@@ -4,7 +4,7 @@ export const setCookies = (session, res) => {
   const options = {
     httpOnly: true,
     secure: false,
-    sameSite: 'none',
+    sameSite: 'lax',
   };
   res.cookie('sessionId', session._id, { ...options, maxAge: TWO_DAYS });
   res.cookie('accessToken', session.accessToken, {
