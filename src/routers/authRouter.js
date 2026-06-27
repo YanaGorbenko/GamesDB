@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import {
+  getCurrentUser,
   logout,
   refreshSession,
   signIn,
@@ -14,5 +15,6 @@ router.post('/sign-up', celebrate(signUpSchema), signUp);
 router.post('/sign-in', celebrate(signInSchema), signIn);
 router.post('/logout', logout);
 router.post('/refresh', refreshSession);
+router.get('/current', getCurrentUser);
 
 export default router;

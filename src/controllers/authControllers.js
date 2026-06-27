@@ -6,6 +6,7 @@ import {
   deleteSessionByUserId,
   deleteSessionById,
   findSessionById,
+  findUserById,
 } from '../services/authServices.js';
 import bcrypt from 'bcrypt';
 import { clearCookies, setCookies } from '../utils/index.js';
@@ -103,4 +104,24 @@ export const refreshSession = async (req, res) => {
   setCookies(newSession, res);
 
   res.sendStatus(204);
+};
+
+export const getCurrentUser = async (req, res, next) => {
+  try {
+    const { userId } = req.session; // ✅ Предполагается, что у вас есть session с userId
+
+    if (!userId) {
+      throw createHttpError(401, 'User not authenticated');
+    }
+
+    const user = await findUserById(userId);
+
+    if (!user) {
+      throw createHttpError(404, 'User not found');
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
 };
