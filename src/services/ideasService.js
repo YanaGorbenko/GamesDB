@@ -49,6 +49,7 @@ export const updateIdeaService = async (id, authorId, ideaData) => {
   };
 };
 
+// services/ideasServices.js
 export const voteIdeaService = async (ideaId, userId) => {
   const idea = await Idea.findById(ideaId);
 
@@ -71,13 +72,9 @@ export const voteIdeaService = async (ideaId, userId) => {
       $inc: { votes: 1 },
     },
     { new: true },
-  ).populate('authorId', 'email');
+  ).populate('authorId', 'name email photo');
 
-  return {
-    ideaId: updatedIdea._id,
-    totalVotes: updatedIdea.votes,
-    userVoted: true,
-  };
+  return updatedIdea;
 };
 
 export const unvoteIdeaService = async (ideaId, userId) => {
@@ -98,11 +95,7 @@ export const unvoteIdeaService = async (ideaId, userId) => {
       $inc: { votes: -1 },
     },
     { new: true },
-  ).populate('authorId', 'email');
+  ).populate('authorId', 'name email photo');
 
-  return {
-    ideaId: updatedIdea._id,
-    totalVotes: updatedIdea.votes,
-    userVoted: false,
-  };
+  return updatedIdea;
 };

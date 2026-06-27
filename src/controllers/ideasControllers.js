@@ -55,12 +55,12 @@ export const voteIdea = async (req, res, next) => {
   const { ideaId } = req.params;
   const userId = req.user._id;
 
-  const result = await voteIdeaService(ideaId, userId);
+  const updatedIdea = await voteIdeaService(ideaId, userId);
 
   res.status(200).json({
     success: true,
     message: 'Vote added successfully',
-    data: result,
+    data: updatedIdea,
   });
 };
 
@@ -68,11 +68,11 @@ export const unvoteIdea = async (req, res, next) => {
   const { ideaId } = req.params;
   const userId = req.user._id;
 
-  const result = await unvoteIdeaService(ideaId, userId);
+  const updatedIdea = await unvoteIdeaService(ideaId, userId);
 
   res.status(200).json({
     success: true,
     message: 'Vote removed successfully',
-    data: result,
+    data: updatedIdea,
   });
 };
