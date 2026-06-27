@@ -32,7 +32,12 @@ export const signUp = async (req, res) => {
 
   setCookies(session, res);
 
-  res.status(201).json({ name: newUser.name, email: newUser.email });
+  res.status(201).json({
+    _id: newUser._id,
+    name: newUser.name,
+    email: newUser.email,
+    photo: newUser.photo,
+  });
 };
 
 export const signIn = async (req, res) => {
@@ -56,7 +61,12 @@ export const signIn = async (req, res) => {
 
   setCookies(session, res);
 
-  res.status(200).json({ name: user.name, email });
+  res.status(200).json({
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    photo: user.photo,
+  });
 };
 
 export const logout = async (req, res) => {
