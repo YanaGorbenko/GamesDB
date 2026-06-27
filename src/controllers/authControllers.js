@@ -108,11 +108,19 @@ export const refreshSession = async (req, res) => {
 
 export const getCurrentUser = async (req, res, next) => {
   try {
-    const { userId } = req.session; // ✅ Предполагается, что у вас есть session с userId
+    const { sessionId } = req.cookies;
 
-    if (!userId) {
-      throw createHttpError(401, 'User not authenticated');
+    if (!sessionId) {
+      throw createHttpError(401, 'No session');
     }
+
+    const session = await findSessionById(sessionId);
+
+    if (!session) {
+      throw createHttpError(401, 'Session not found');
+    }
+
+    const userId = session.userId;
 
     const user = await findUserById(userId);
 
@@ -120,7 +128,12 @@ export const getCurrentUser = async (req, res, next) => {
       throw createHttpError(404, 'User not found');
     }
 
-    res.status(200).json(user);
+    res.status(200).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      photo: user.photo,
+    });
   } catch (error) {
     next(error);
   }
