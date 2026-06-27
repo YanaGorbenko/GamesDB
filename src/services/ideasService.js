@@ -17,9 +17,7 @@ export const getAllIdeasService = async (page = 1, limit = 10) => {
 
 export const getUserIdeasService = async (authorId, page = 1, limit = 10) => {
   const skip = (page - 1) * limit;
-  const ideasQuery = Idea.find({ authorId })
-    .populate('authorId', 'email')
-    .sort({ createdAt: -1 });
+  const ideasQuery = Idea.find({ authorId }).populate('authorId', 'email');
 
   const [totalCount, ideas] = await Promise.all([
     ideasQuery.clone().countDocuments(),
