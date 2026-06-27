@@ -4,7 +4,8 @@ export const setCookies = (session, res) => {
   const options = {
     httpOnly: true,
     secure: false, // ✅ false для localhost
-    sameSite: 'none',
+    sameSite: 'lax', // ✅ lax для локальной разработки
+    path: '/',
   };
   res.cookie('sessionId', session._id, { ...options, maxAge: TWO_DAYS });
   res.cookie('accessToken', session.accessToken, {
