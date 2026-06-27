@@ -7,7 +7,7 @@ export const getAllIdeasService = async (page = 1, limit = 10) => {
 
   const [totalCount, ideas] = await Promise.all([
     ideasQuery.clone().countDocuments(),
-    ideasQuery.skip(skip).limit(limit).sort({ votes: 'asc' }),
+    ideasQuery.skip(skip).limit(limit).sort({ votes: 'desc' }),
   ]);
 
   const totalPages = Math.ceil(totalCount / limit);
