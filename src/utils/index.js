@@ -3,8 +3,8 @@ import { TWENTY_MINUTES, TWO_DAYS } from '../constants/index.js';
 export const setCookies = (session, res) => {
   const options = {
     httpOnly: true,
-    secure: false, // ✅ false для localhost
-    sameSite: 'lax', // ✅ lax для локальной разработки
+    secure: true,
+    sameSite: 'none',
     path: '/',
   };
   res.cookie('sessionId', session._id, { ...options, maxAge: TWO_DAYS });

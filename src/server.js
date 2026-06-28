@@ -16,7 +16,6 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-// ✅ Упрощенная настройка CORS (без функции)
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
@@ -46,7 +45,6 @@ app.use(notFoundHandler);
 app.use(errors());
 app.use(errorHandler);
 
-// ✅ Подключаем БД и запускаем сервер правильно
 try {
   await connectDb();
   app.listen(PORT, () => {
