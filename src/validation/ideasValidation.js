@@ -17,7 +17,7 @@ export const createIdeaSchema = {
     title: Joi.string().min(2).max(50).required().messages({
       'any.required': 'Field title is required',
     }),
-    description: Joi.string().min(2).max(350).required(),
+    description: Joi.string().min(2).max(1000).required(),
     genre: Joi.string().valid(...GENRES),
   }),
 };
@@ -25,7 +25,7 @@ export const createIdeaSchema = {
 export const updateIdeaSchema = {
   [Segments.BODY]: Joi.object({
     title: Joi.string().min(2).max(50),
-    description: Joi.string().min(2).max(350),
+    description: Joi.string().min(2).max(1000),
     genre: Joi.string().valid(...GENRES),
   }).min(1),
   [Segments.PARAMS]: Joi.object({
