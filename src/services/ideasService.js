@@ -49,7 +49,6 @@ export const updateIdeaService = async (id, authorId, ideaData) => {
   };
 };
 
-// services/ideasServices.js
 export const voteIdeaService = async (ideaId, userId) => {
   const idea = await Idea.findById(ideaId);
 

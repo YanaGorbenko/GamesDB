@@ -78,6 +78,7 @@ export const updateUserAvatarService = async (userId, avatarUrl) => {
   }
 
   return {
+    _id: user._id,
     photo: user.photo,
     name: user.name,
     email: user.email,
