@@ -46,7 +46,7 @@ export const updateIdea = async (req, res) => {
   const authorId = req.user._id;
   const result = await updateIdeaService(ideaId, authorId, body);
   if (!result) {
-    throw createHttpError(404, 'Todo not found!');
+    throw createHttpError(404, 'Idea not found!');
   }
   res.json(result.data);
 };

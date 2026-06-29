@@ -3,7 +3,7 @@ import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { connectDb } from './db/connectDB.js';
 import 'dotenv/config';
-import gamesRouter from './routers/GamesRouter.js';
+import gamesRouter from './routers/gamesRouter.js';
 import authRouter from './routers/authRouter.js';
 import cookieParser from 'cookie-parser';
 import { errors } from 'celebrate';
@@ -18,11 +18,7 @@ const app = express();
 
 app.set('trust proxy', 1);
 
-const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:5174',
-  'https://react-final-project-silk-three.vercel.app',
-];
+const allowedOrigins = ['https://react-final-project-silk-three.vercel.app'];
 
 app.use(
   cors({

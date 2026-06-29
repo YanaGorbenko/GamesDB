@@ -70,7 +70,9 @@ export const voteIdeaService = async (ideaId, userId) => {
       $push: { voters: userId },
       $inc: { votes: 1 },
     },
-    { new: true },
+    {
+      returnDocument: 'after',
+    },
   ).populate('authorId', 'name email photo');
 
   return updatedIdea;
@@ -93,7 +95,9 @@ export const unvoteIdeaService = async (ideaId, userId) => {
       $pull: { voters: userId },
       $inc: { votes: -1 },
     },
-    { new: true },
+    {
+      returnDocument: 'after',
+    },
   ).populate('authorId', 'name email photo');
 
   return updatedIdea;

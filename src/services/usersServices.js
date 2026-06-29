@@ -51,7 +51,7 @@ export const addGameToSelectedService = async (userId, gameId) => {
   return await User.findByIdAndUpdate(
     userId,
     { $addToSet: { selectedGames: gameId } },
-    { new: true },
+    { returnDocument: 'after' },
   ).populate('selectedGames');
 };
 
@@ -59,7 +59,7 @@ export const removeGameFromSelectedService = async (userId, gameId) => {
   return await User.findByIdAndUpdate(
     userId,
     { $pull: { selectedGames: gameId } },
-    { new: true },
+    { returnDocument: 'after' },
   ).populate('selectedGames');
 };
 
@@ -68,7 +68,7 @@ export const updateUserAvatarService = async (userId, avatarUrl) => {
     userId,
     { photo: avatarUrl },
     {
-      new: true,
+      returnDocument: 'after',
       select: 'name email photo',
     },
   );
