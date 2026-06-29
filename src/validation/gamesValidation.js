@@ -1,9 +1,6 @@
 import { Joi, Segments } from 'celebrate';
-import { isValidObjectId } from 'mongoose';
 import { GENRES } from '../constants/index.js';
-
-const validateId = (id, utils) =>
-  isValidObjectId(id) ? id : utils.message('Invalid id!');
+import { validateId } from '../utils/idValidation.js';
 
 export const getGamesSchema = {
   [Segments.QUERY]: Joi.object({
